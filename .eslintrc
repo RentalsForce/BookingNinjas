@@ -1,0 +1,19 @@
+{
+    "parser": "@babel/eslint-parser",
+    "parserOptions": {
+        "requireConfigFile": false,
+        "babelOptions": {
+            "parserOpts": {
+                "plugins": ["classProperties", ["decorators", { "decoratorsBeforeExport": false }]]
+            }
+        }
+    },
+
+    "plugins": ["@lwc/eslint-plugin-lwc"],
+    "extends": [ "eslint:recommended","@salesforce/eslint-config-lwc/recommended"],
+
+    "rules": {
+        "@lwc/lwc/valid-api": "error",
+        "@lwc/lwc/consistent-component-name": "warn"
+    }
+}

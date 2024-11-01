@@ -1,0 +1,125 @@
+<template>
+    <lightning-spinner lwc:if={isLoading} size="medium" style="position: fixed"></lightning-spinner>
+    <div class="slds-card slds-card_boundary slds-grid slds-grid_vertical forceListViewManager slds-grow">
+        <div
+            class="slds-page-header_object-home slds-page-header_joined slds-page-header slds-shrink-none forceListViewManagerHeader"
+        >
+            <div class="slds-grid">
+                <div class="slds-col slds-has-flexi-truncate firstHeaderRow">
+                    <div class="slds-media slds-no-space slds-grow">
+                        <div
+                            class="highlights-icon-container slds-avatar slds-var-m-right_small icon"
+                            style="background-color: #e1d951"
+                        >
+                            <img src={iconUrl} title={recordType} />
+                        </div>
+                        <div class="slds-media__body slds-align-middle">
+                            <div class="slds-grid slds-media__body">
+                                <div
+                                    class="slds-truncate slds-page-header__title slds-text-color_default forceListViewPicker"
+                                >
+                                    <div class="triggerLinkTextAndIconWrapper slds-page-header__name">
+                                        <div class="slds-page-header__name-title">
+                                            <h1 class="slds-scrollable_none">
+                                                <span
+                                                    class="selectedListView slds-page-header__title slds-truncate slds-var-p-right_xx-small"
+                                                >
+                                                    {label.labelAll} {tabName}
+                                                </span>
+                                            </h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="slds-col slds-no-flex slds-grid slds-align-top slds-var-p-bottom_xx-small test-lvmForceActionsContainer"
+                >
+                    <ul
+                        lwc:if={enableNewRecord}
+                        class="branding-actions slds-button-group slds-var-m-left_xx-small oneActionsRibbon forceActionsContainer"
+                    >
+                        <li class="slds-button slds-button_neutral">
+                            <a class="forceActionLink" role="button" onclick={handleNewRecordPopup}>{label.labelNew}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="slds-grid">
+                <div class="slds-col slds-align-bottom">
+                    <div class="slds-text-body_small">
+                        <div aria-live="polite" role="status">
+                            <span class="countSortedByFilteredBy">
+                                {totalRecords} {label.labelItems} • {label.labelSorted_by_Latest_Updated} {tabName}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="c-record-filter">
+                    <header class="slds-media slds-media_center slds-has-flexi-truncate slds-var-m-bottom_small">
+                        <div class="slds-no-flex">
+                            <lightning-button
+                                class="slds-hide"
+                                label={label.labelRefresh}
+                                icon-position="right"
+                                icon-name="utility:loop"
+                                onclick={handleFilterReset}
+                            ></lightning-button>
+                            <lightning-button
+                                lwc:if={hasFilters}
+                                variant="neutral"
+                                class="slds-var-p-left_xx-small"
+                                label={label.labelFilter}
+                                icon-name="utility:filter"
+                                icon-position="right"
+                                onclick={handleShowFilters}
+                            ></lightning-button>
+                        </div>
+                    </header>
+                </div>
+            </div>
+            <!-- FILTERS -->
+            <c-tab-record-list-filters
+                lwc:if={showFilters}
+                filters={filters}
+                onsearch={handleSearch}
+                onclick={handleFilterClick}
+                oninput={handleFilterChange}
+                onreset={handleFilterReset}
+            ></c-tab-record-list-filters>
+        </div>
+        <div class="slds-grid listDisplays safari-workaround-anchor slds-grow">
+            <div class="slds-grid listViewContainer safari-workaround">
+                <div class="slds-col slds-no-space forceListViewManagerPrimaryDisplayManager">
+                    <div class="forceListViewManagerGrid">
+                        <div class="listViewContent">
+                            <lightning-datatable
+                                key-field="id"
+                                columns={columns}
+                                data={records}
+                                hide-checkbox-column
+                                show-row-number-column
+                                default-sort-direction={defaultSortDirection}
+                                sorted-direction={sortDirection}
+                                sorted-by={sortedBy}
+                                is-loading={isLoading}
+                                enable-infinite-loading={enableInfiniteLoading}
+                                onloadmore={loadMoreData}
+                                onsort={onHandleSort}
+                                style="height: 15rem"
+                            >
+                            </lightning-datatable>
+                            <div class="slds-text-align_center slds-var-p-top_large">
+                                <p>
+                                    <span>No more&nbsp;{tabName}&nbsp;to display.</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

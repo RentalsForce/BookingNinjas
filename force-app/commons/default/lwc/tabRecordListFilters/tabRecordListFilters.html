@@ -1,0 +1,65 @@
+<template>
+    <section class="slds-grid slds-wrap slds-grid_vertical-align-end slds-gutters_direct-xx-small">
+        <template for:each={filters} for:item="filter">
+            <div class="slds-col slds-var-m-bottom_small slds-size_2-of-12" key={filter.name}>
+                <lightning-input
+                    lwc:if={filter.isInput}
+                    type={filter.type}
+                    name={filter.name}
+                    label={filter.label}
+                    value={filter.value}
+                    placeholder={filter.placeholder}
+                    onchange={handleFilterChange}
+                    onclick={handleFilterClick}
+                >
+                </lightning-input>
+                <lightning-combobox
+                    lwc:elseif={filter.isCombobox}
+                    name={filter.name}
+                    label={filter.label}
+                    value={filter.value}
+                    options={filter.options}
+                    placeholder={filter.placeholder}
+                    onchange={handleFilterChange}
+                    onclick={handleFilterClick}
+                ></lightning-combobox>
+            </div>
+        </template>
+
+        <!-- Search btn -->
+        <div class="slds-col slds-var-m-bottom_small slds-grow-none">
+            <button
+                class="c-button c-button_outline c-button_primary c-button_has-icon c-button_width-auto"
+                title={label.labelSearch}
+                onclick={handleSearch}
+            >
+                <lightning-icon
+                    icon-name="utility:search"
+                    alternative-text={label.labelSearch}
+                    title={label.labelSearch}
+                    size="x-small"
+                    class="slds-var-m-right_x-small"
+                ></lightning-icon>
+                {label.labelSearch}
+            </button>
+        </div>
+
+        <!-- Reset all btn -->
+        <div class="slds-col slds-var-m-bottom_small slds-grow-none">
+            <button
+                class="c-button c-button_outline c-button_primary c-button_has-icon c-button_width-auto"
+                title={label.labelReset_All_Filters}
+                onclick={handleResetAllFilters}
+            >
+                <lightning-icon
+                    icon-name="utility:refresh"
+                    alternative-text={label.labelReset_All_Filters}
+                    title={label.labelReset_All_Filters}
+                    size="x-small"
+                    class="slds-var-m-right_x-small"
+                ></lightning-icon>
+                {label.labelReset_All}
+            </button>
+        </div>
+    </section>
+</template>

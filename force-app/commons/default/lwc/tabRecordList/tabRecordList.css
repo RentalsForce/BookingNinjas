@@ -1,0 +1,131 @@
+@import 'c/cssLibrary';
+
+:host {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+}
+
+/* Search Filter */
+.search-section__wrapper {
+    box-shadow: 0px 2px 6px rgba(6, 96, 175, 0.25);
+    border-radius: 7px;
+    background: #ffffff;
+}
+
+.search-item {
+    width: 15%;
+    max-width: 25%;
+    flex-grow: 1;
+}
+
+.search-item__button-container {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+}
+
+@media screen and (min-width: 1200px) {
+    .search-item {
+        max-width: 18rem;
+        width: 15%;
+        flex-grow: 0;
+    }
+
+    .search-item__button-container {
+        margin-right: 0;
+        width: 19%;
+    }
+}
+
+.c-input {
+    --sds-c-input-text-color: #5f5f5f;
+    --sds-c-input-color-border: #9fd2ff;
+    --sds-c-input-color-border-focus: #9fd2ff;
+    --sds-c-input-radius-border: 7px;
+    --sds-c-input-shadow-focus: none;
+    color: #5f5f5f;
+    --lwc-colorTextLabel: #5f5f5f;
+}
+
+.c-input[readonly] {
+    padding-left: 0.75rem;
+    border-color: #9fd2ff;
+    background-color: #ffffff;
+    font-weight: bold;
+}
+
+.c-input-icon {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    right: 0.5rem;
+    z-index: 2;
+    --sds-c-icon-color-foreground: #ffffff;
+    --sds-c-icon-color-background: transparent;
+    border-radius: 50%;
+    background: #8ac9ff;
+    pointer-events: none;
+}
+
+.c-input-clear-btn {
+    position: absolute;
+    right: 0;
+    top: 6px;
+    --sds-c-icon-color-foreground-default: #f28f8f;
+    cursor: pointer;
+}
+
+.c-input-clear-btn:hover {
+    opacity: 0.85;
+}
+
+/* Button */
+.c-button {
+    display: block;
+    min-width: 100px;
+    font-weight: bold;
+    color: #ffffff;
+    background: #1a74c3;
+    border-radius: 7px;
+    border: 1px solid #1a74c3;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0px 2px 6px rgba(6, 96, 175, 0.25);
+}
+
+.c-button:hover {
+    opacity: 0.85;
+}
+
+.c-button__yellow {
+    color: #555555;
+    border-color: #ffea7a;
+    background: #ffea7a;
+}
+
+.c-button__white {
+    color: #555555;
+    border-color: #555555;
+    background: #fff;
+}
+
+.c-button__empty-blue {
+    color: #1a74c3;
+    background: #ffffff;
+}
+
+.c-button__empty-black {
+    min-width: 100px;
+    color: #5f5f5f;
+    border-color: #5f5f5f;
+    background: #ffffff;
+}
+
+.c-button[disabled],
+.c-button:disabled {
+    opacity: 0.5;
+}

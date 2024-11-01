@@ -1,0 +1,70 @@
+<template>
+    <section role="dialog" tabindex="-1" aria-modal="true" class="slds-modal bn-modal" style={zIndexContentStyle}>
+        <div class="slds-modal__container bn-modal__container" style={containerStyle}>
+            <!-- HEADER -->
+            <header if:false={noHeader} class="slds-modal__header bn-modal__header">
+                <div class="slds-grid slds-wrap">
+                    <h2 class="slds-modal__title slds-hyphenate">
+                        <lightning-formatted-rich-text value={title}></lightning-formatted-rich-text>
+                    </h2>
+                    <button
+                        if:false={hideCloseButton}
+                        class="slds-button slds-button_icon bn-modal__close"
+                        title={label.labelClose}
+                        onclick={closeModal}
+                        disabled={disableClose}
+                    >
+                        <lightning-icon icon-name="utility:close" size="small"> </lightning-icon>
+                        <span class="slds-assistive-text">{label.labelClose}</span>
+                    </button>
+                </div>
+                <slot name="header-content"> </slot>
+            </header>
+
+            <!-- CONTENT -->
+            <div class={contentClasses}>
+                <lightning-spinner
+                    if:true={loading}
+                    style="z-index: 9999"
+                    alternative-text="Loading..."
+                    variant="brand"
+                ></lightning-spinner>
+                <slot></slot>
+            </div>
+
+            <footer if:true={hasFooter} class="slds-modal__footer">
+                <slot name="footer" onslotchange={handleFooterSlotChange}></slot>
+            </footer>
+            <div if:false={hasFooter} class="bn-modal__no-footer">
+                <slot name="footer" onslotchange={handleFooterSlotChange}></slot>
+            </div>
+        </div>
+    </section>
+    <div class="slds-backdrop bn-modal-backdrop" style={zIndexBackgroundStyle}></div>
+
+    <!-- 
+        ATTRIBUTES: 
+            width="350px" -     the maximum width of the window. Default value is 40rem
+            no-header="true" -  hide header with close button. Enabled by default
+            no-scroll="true" -  disable scrollbars for the content section. It helps to remove 
+                                clipping of drop-down lists at the bottom of the modal window
+                                (DO NOT use for high pop-ups)
+            nesting-level='1'-  set z-index depending on the nesting of a popup in another popup
+            disableClose -      makes the close button in the header disabled 
+            loading="true" -    manages the state of the loading spinner
+        
+        CSS HOOKS:
+            --bn-modal-background-color             default - white
+            --bn-modal-header-background-color      default - white
+            --bn-modal-header-shadow                default - 0px 4px 23px rgba(26, 116, 195, 0.11)
+            --bn-modal-radius-border                default - 16px
+    -->
+
+    <!-- EXAMPLE: -->
+    <!-- 
+        <c-popup onclose={closeModal} title="Modal window title" nesting-level="1" loading={isLoading}>
+            <div>Modal content</div>
+            <div slot="footer">Use this slot if you need footer or delete it</div>
+        </c-popup>
+    -->
+</template>

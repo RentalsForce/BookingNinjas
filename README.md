@@ -1,18 +1,41 @@
-# Salesforce DX Project: Next Steps
+Branching flow
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+![image](scripts/git-flow.png)
 
-## How Do You Plan to Deploy Your Changes?
+# Type of commits
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
+The type is responsible for telling us what change or iteration is being made, from the convention rules, we have the following types:
 
-## Configure Your Salesforce DX Project
+`test`: indicates any type of creation or alteration of test codes.
+Example: Creation of unit tests.
 
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
+`feat`: indicates the development of a new feature for the project.
+Example: Adding a service, functionality, endpoint, etc.
 
-## Read All About It
+`refactor`: used when there is a code refactoring that does not have any impact on the system logic/rules.
+Example: Code changes after a code review
 
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+`style`: used when there are code formatting and style changes that do not change the system in any way.
+Example: Change the style-guide, change the lint convention, fix indentations, remove white spaces, remove comments, etc…
+
+`fix`: used when correcting errors that are generating bugs in the system.
+Example: Apply a handling for a function that is not behaving as expected and returning an error.
+
+`chore`: indicates changes to the project that do not affect the system or test files. These are developmental changes.
+Example: Change rules for eslint, add prettier, add more file extensions to .gitignore
+
+`docs`: used when there are changes in the project documentation.
+Example: add information in the API documentation, change the README, etc.
+
+`build`: used to indicate changes that affect the project build process or external dependencies.
+Example: Gulp, add/remove npm dependencies, etc…
+
+`perf`: indicates a change that improved system performance.
+Example: change ForEach to While, etc…
+
+`ci`: used for changes in CI configuration files.
+Example: Circle, Travis, BrowserStack, etc…
+
+`revert`: indicates the reversal of a previous commit.
+
+<br/>

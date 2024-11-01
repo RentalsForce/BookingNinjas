@@ -1,0 +1,132 @@
+.bn-modal {
+    --sds-c-modal-radius-border: var(--bn-modal-radius-border, 16px);
+    --sds-c-modal-sizing-border: 0;
+    --sds-c-modal-header-color-background: var(--bn-modal-header-background-color, #fff);
+    --sds-c-modal-heading-font-size: 1rem;
+    --sds-c-modal-heading-font-weight: bold;
+    --sds-c-modal-header-text-color: #333333;
+    --sds-c-modal-sizing-border: 0;
+    --sds-c-modal-header-spacing-inline-start: 2.5rem;
+    --sds-c-modal-header-spacing-inline-end: 2.5rem;
+    --slds-c-modal-header-spacing-block-start: 0.875rem;
+    --slds-c-modal-header-spacing-block-end: 0.875rem;
+    --sds-c-modal-footer-spacing-inline-start: 0rem;
+    --sds-c-modal-footer-spacing-inline-end: 0rem;
+    --sds-c-modal-footer-spacing-block-start: 0rem;
+    --sds-c-modal-content-color-background: var(--bn-modal-background-color, #fff);
+    --sds-c-modal-footer-color-background: var(--bn-modal-background-color, #fff);
+    outline: none;
+    transform: translate3d(0, 16px, 0);
+    transition:
+        opacity 0.1s linear,
+        transform 0.2s linear,
+        visibility 0.2s linear;
+    will-change: opacity, transform, visibility;
+}
+
+.bn-modal_open {
+    opacity: 1;
+    visibility: visible;
+    transform: translate3d(0, 0, 0);
+}
+
+.bn-modal__container {
+    transform: none;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.bn-modal .bn-modal__content--no-scroll {
+    overflow: unset;
+}
+
+@media screen and (min-width: 36em) {
+    .bn-modal {
+        margin: 0 2rem;
+    }
+    .bn-modal__container {
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        max-width: 40rem;
+    }
+}
+
+.bn-modal__header {
+    box-shadow: var(--bn-modal-header-shadow, 0px 4px 23px rgba(26, 116, 195, 0.11));
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    z-index: 100;
+}
+
+.bn-modal-backdrop {
+    --sds-c-backdrop-color-background: rgba(6, 96, 175, 0.5);
+    /* backdrop-filter cause problems in safari */
+    /* -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px); */
+    opacity: 0.15;
+    visibility: visible;
+    transition: opacity 0.2s linear;
+}
+
+.bn-modal-backdrop.slds-backdrop_open {
+    opacity: 1;
+}
+
+.bn-modal__close {
+    --sds-c-icon-color-foreground-default: #333333;
+    position: absolute;
+    right: 1rem;
+}
+
+.bn-modal__content {
+    border-radius: var(--sds-c-modal-radius-border);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    position: relative;
+}
+
+.bn-modal__header + .bn-modal__content {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.bn-modal__no-footer {
+    padding-top: var(--sds-c-modal-radius-border);
+    border-bottom-right-radius: var(--sds-c-modal-radius-border);
+    border-bottom-left-radius: var(--sds-c-modal-radius-border);
+    box-shadow: var(--sds-c-modal-shadow);
+    background-color: var(--sds-c-modal-footer-color-background);
+}
+
+/* SCROLLBAR */
+/* width */
+*::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+/* Track */
+*::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Handle */
+*::-webkit-scrollbar-thumb {
+    background: #9b9b9b;
+    border: 2px solid var(--bn-modal-background-color, #fff);
+    border-radius: 7px;
+}
+
+/* Handle on hover */
+*::-webkit-scrollbar-thumb:hover {
+    background: #9b9b9b;
+}
+
+/* Firefox  */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #9b9b9b transparent;
+}
